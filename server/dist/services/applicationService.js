@@ -76,7 +76,7 @@ export class ApplicationService {
       INSERT INTO applications (
         user_id, internship_id, status, cover_note, resume_used, match_score, match_reasons
       ) VALUES (?, ?, 'applied', ?, ?, ?, ?)
-    `).run(userId, internshipId, coverNote || 'Application submitted via KaamSutra candidate portal.', profile.resume_filename || 'Default Profile Dossier', matchResult.score, JSON.stringify(matchResult));
+    `).run(userId, internshipId, coverNote || 'Application submitted via Kaamsetu candidate portal.', profile.resume_filename || 'Default Profile Dossier', matchResult.score, JSON.stringify(matchResult));
         const appId = Number(result.lastInsertRowid);
         return this.getApplicationById(userId, appId);
     }

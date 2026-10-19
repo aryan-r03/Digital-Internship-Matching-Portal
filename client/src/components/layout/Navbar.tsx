@@ -61,7 +61,7 @@ export const Navbar: React.FC = () => {
             <div className="flex flex-col">
               <div className="flex items-center gap-1.5 leading-none">
                 <span className="font-display font-extrabold text-lg sm:text-xl tracking-wider text-manga-text uppercase group-hover:text-white transition-colors">
-                  KaamSutra<span className="text-manga-accent">.</span>IO
+                  Kaamsetu<span className="text-manga-accent">.</span>IO
                 </span>
                 <span className="text-xs font-hindi text-manga-accent font-bold">
                   कामसूत्र

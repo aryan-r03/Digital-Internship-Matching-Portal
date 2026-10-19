@@ -60,7 +60,7 @@ export const Register: React.FC = () => {
 
           <div className="relative z-10 space-y-2">
             <h2 className="text-3xl font-display font-black uppercase text-white leading-tight">
-              Join the KaamSutra Network
+              Join the Kaamsetu Network
             </h2>
             <p className="text-xs font-mono text-manga-muted leading-relaxed">
               Create a candidate account to save opportunities and track applications, or register as a recruiter to post roles.

@@ -17,7 +17,7 @@ export const NotFound: React.FC = () => {
         </div>
 
         <p className="text-xs sm:text-sm text-manga-muted leading-relaxed">
-          The requested opportunity, profile coordinate, or page could not be located in the KaamSutra directory.
+          The requested opportunity, profile coordinate, or page could not be located in the Kaamsetu directory.
         </p>
 
         <div className="pt-2 flex justify-center gap-3">

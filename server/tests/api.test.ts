@@ -18,7 +18,7 @@ describe('NextGen Manga API Suite', () => {
       const res = await request(app).get('/health');
       expect(res.status).toBe(200);
       expect(['healthy']).toContain(res.body.status);
-      expect(['kaamsutra-api', 'nextgen-manga-api']).toContain(res.body.service);
+      expect(['kaamsetu-api', 'nextgen-manga-api']).toContain(res.body.service);
     });
 
     it('GET /api/v1/health returns version and status', async () => {

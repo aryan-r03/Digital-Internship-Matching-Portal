@@ -5,7 +5,7 @@ import {
   INITIAL_CANDIDATE_PROFILE,
 } from './api/opportunityService.js';
 
-describe('KaamSutra Career & Internship Portal — Frontend Domain & Service Suite', () => {
+describe('Kaamsetu Career & Internship Portal — Frontend Domain & Service Suite', () => {
   describe('Data Integrity & Mock Labeling', () => {
     it('ensures every single opportunity has explicit isMockData: true flag', () => {
       expect(MOCK_OPPORTUNITIES.length).toBeGreaterThan(0);

@@ -1,4 +1,4 @@
-# KAAMSUTRA // कामसूत्र
+# KAAMsetu // कामसूत्र
 
 > **Production-Grade Full-Stack Manga Platform with Cinematic Editorial Aesthetics**
 
@@ -13,7 +13,7 @@
 
 ## 1. PROJECT OVERVIEW
 
-**KaamSutra // कामसूत्र** is an editorial manga publishing, reading, and community platform inspired by high-contrast print art direction, Indian & Devanagari typography, and cinematic framing.
+**Kaamsetu // कामसूत्र** is an editorial manga publishing, reading, and community platform inspired by high-contrast print art direction, Indian & Devanagari typography, and cinematic framing.
 
 Unlike generic anime templates, the application implements an intentional visual design language:
 - Predominantly black, charcoal, and off-white surfaces (`#080808`, `#111111`, `#191919`, `#F5F3EF`).

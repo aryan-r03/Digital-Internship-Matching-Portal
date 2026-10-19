@@ -131,7 +131,7 @@ export function initDatabase() {
   `;
     db.exec(schema);
     console.log('[Database] Legacy schema verified and indexes initialized successfully.');
-    // Run KaamSutra Phase 2 migrations and seeding
+    // Run Kaamsetu Phase 2 migrations and seeding
     runMigrations(db);
     seedOpportunities(db);
 }

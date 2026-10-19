@@ -122,5 +122,5 @@ export function runMigrations(db: DatabaseSync): void {
     CREATE INDEX IF NOT EXISTS idx_resumes_user ON resumes(user_id);
   `);
 
-  console.log('[Database] KaamSutra Phase 2 schema migrations executed successfully.');
+  console.log('[Database] Kaamsetu Phase 2 schema migrations executed successfully.');
 }
