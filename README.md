@@ -1,4 +1,4 @@
-# KAAMsetu // कामसूत्र
+# KaamSetu // कामसूत्र
 
 > **Production-Grade Full-Stack Manga Platform with Cinematic Editorial Aesthetics**
 
@@ -13,7 +13,7 @@
 
 ## 1. PROJECT OVERVIEW
 
-**Kaamsetu // कामसूत्र** is an editorial manga publishing, reading, and community platform inspired by high-contrast print art direction, Indian & Devanagari typography, and cinematic framing.
+**KaamSetu // कामसूत्र** is an editorial manga publishing, reading, and community platform inspired by high-contrast print art direction, Indian & Devanagari typography, and cinematic framing.
 
 Unlike generic anime templates, the application implements an intentional visual design language:
 - Predominantly black, charcoal, and off-white surfaces (`#080808`, `#111111`, `#191919`, `#F5F3EF`).
@@ -113,7 +113,7 @@ Next_Gen_Final/
 │   │   │   └── stats.ts       # /api/v1/stats (platform & user metrics)
 │   │   ├── services/          # Authoritative domain business logic
 │   │   ├── types/index.ts     # Shared server TypeScript types
-│   │   ├── app.ts             # Express app setup & production static serving
+│   │   ├── app.ts             # Express app Setup & production static serving
 │   │   └── index.ts           # Server entry point & graceful shutdown
 │   ├── tests/api.test.ts      # 17 automated integration tests with supertest
 │   └── tsconfig.json

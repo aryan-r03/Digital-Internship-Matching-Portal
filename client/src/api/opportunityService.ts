@@ -105,7 +105,7 @@ export const MOCK_OPPORTUNITIES: Opportunity[] = [
     ],
     perks: [
       'High-conversion PPO pathway for graduating candidates.',
-      '₹25,000 remote workstation setup allowance.',
+      '₹25,000 remote workstation Setup allowance.',
       'Unlimited wellness days and annual book budget.',
     ],
     applicationDeadline: '2025-11-30',
@@ -478,7 +478,7 @@ export const INITIAL_APPLICATIONS: ApplicationRecord[] = [
     id: 'app-002',
     opportunityId: 'opp-llm-03',
     opportunityTitle: 'Autonomous AI Agents & RAG Engineer',
-    companyName: 'Kaamsetu Intelligence',
+    companyName: 'KaamSetu Intelligence',
     companyLogoUrl: 'https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=150&q=80',
     location: 'Delhi NCR',
     workMode: 'Hybrid',
@@ -491,13 +491,13 @@ export const INITIAL_APPLICATIONS: ApplicationRecord[] = [
 
 const API_BASE = ((import.meta as any).env?.VITE_API_BASE as string) || 'http://localhost:5001/api/v1';
 
-// Helper storage keys for Kaamsetu local persistence fallback
-const STORAGE_SAVED_IDS = 'kaamsetu_saved_opp_ids';
-const STORAGE_APPLICATIONS = 'kaamsetu_applied_records';
-const STORAGE_PROFILE = 'kaamsetu_candidate_profile';
+// Helper storage keys for KaamSetu local persistence fallback
+const STORAGE_SAVED_IDS = 'KaamSetu_saved_opp_ids';
+const STORAGE_APPLICATIONS = 'KaamSetu_applied_records';
+const STORAGE_PROFILE = 'KaamSetu_candidate_profile';
 
 function getAuthHeader(): Record<string, string> {
-  const token = localStorage.getItem('kaamsetu_auth_token');
+  const token = localStorage.getItem('KaamSetu_auth_token');
   return token ? { Authorization: `Bearer ${token}` } : {};
 }
 
@@ -508,7 +508,7 @@ function mapBackendInternship(b: any): Opportunity {
     company: {
       name: b.company_name,
       logoUrl: b.company_logo || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=128&auto=format&fit=crop&q=80',
-      website: b.company_website || 'https://kaamsetu.internal',
+      website: b.company_website || 'https://KaamSetu.internal',
       isVerified: Boolean(b.is_verified),
       industry: b.category,
       headquarters: b.location,
@@ -805,7 +805,7 @@ export const opportunityService = {
             id: String(app.id),
             opportunityId: String(app.internship_id),
             opportunityTitle: app.internship?.title || 'Engineering Role',
-            companyName: app.internship?.company_name || 'Kaamsetu Partner',
+            companyName: app.internship?.company_name || 'KaamSetu Partner',
             companyLogoUrl: app.internship?.company_logo || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=128&auto=format&fit=crop&q=80',
             location: app.internship?.location || 'Remote',
             workMode: (app.internship?.work_mode as any) || 'Remote',
@@ -846,7 +846,7 @@ export const opportunityService = {
           id: String(app.id),
           opportunityId: String(app.internship_id),
           opportunityTitle: app.internship?.title || 'Engineering Role',
-          companyName: app.internship?.company_name || 'Kaamsetu Partner',
+          companyName: app.internship?.company_name || 'KaamSetu Partner',
           companyLogoUrl: app.internship?.company_logo || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=128&auto=format&fit=crop&q=80',
           location: app.internship?.location || 'Remote',
           workMode: (app.internship?.work_mode as any) || 'Remote',

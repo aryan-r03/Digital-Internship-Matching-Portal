@@ -282,7 +282,7 @@ export const Home: React.FC = () => {
             Zero Unpaid Work. Real Engineering Impact.
           </h2>
           <p className="text-xs sm:text-sm font-mono text-manga-muted max-w-2xl mx-auto leading-relaxed">
-            Every listing indexed on Kaamsetu provides clear stipend transparency, well-defined batch eligibility, explainable match scoring, and structured mentor accountability. Candidates are treated as junior colleagues contributing to production codebases, not coffee runners.
+            Every listing indexed on KaamSetu provides clear stipend transparency, well-defined batch eligibility, explainable match scoring, and structured mentor accountability. Candidates are treated as junior colleagues contributing to production codebases, not coffee runners.
           </p>
           <div className="pt-2 flex flex-wrap justify-center gap-4">
             <Link to="/opportunities">

@@ -91,7 +91,7 @@ export class ApplicationService {
     `).run(
       userId,
       internshipId,
-      coverNote || 'Application submitted via Kaamsetu candidate portal.',
+      coverNote || 'Application submitted via KaamSetu candidate portal.',
       profile.resume_filename || 'Default Profile Dossier',
       matchResult.score,
       JSON.stringify(matchResult)

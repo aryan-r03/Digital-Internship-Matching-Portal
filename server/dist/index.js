@@ -4,7 +4,7 @@ const PORT = config.port;
 const server = app.listen(PORT, () => {
     console.log(`
   ==============================================================
-   ⛩️  KAAMsetu // कामसूत्र CAREER & INTERNSHIP PLATFORM
+   ⛩️  KaamSetu // कामसूत्र CAREER & INTERNSHIP PLATFORM
    🌐 Server listening on: http://localhost:${PORT}
    🛡️ Environment: ${config.nodeEnv}
    📚 Database: SQLite (${config.databasePath})

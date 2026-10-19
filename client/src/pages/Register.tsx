@@ -9,7 +9,7 @@ export const Register: React.FC = () => {
   const { register, quickLogin } = useAuth();
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState('');
+  const [username, Setusername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState<'reader' | 'creator'>('reader');
@@ -60,7 +60,7 @@ export const Register: React.FC = () => {
 
           <div className="relative z-10 space-y-2">
             <h2 className="text-3xl font-display font-black uppercase text-white leading-tight">
-              Join the Kaamsetu Network
+              Join the KaamSetu Network
             </h2>
             <p className="text-xs font-mono text-manga-muted leading-relaxed">
               Create a candidate account to save opportunities and track applications, or register as a recruiter to post roles.
@@ -98,7 +98,7 @@ export const Register: React.FC = () => {
                 type="text"
                 placeholder="e.g. MangaNinja"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => Setusername(e.target.value)}
                 className="w-full bg-manga-elevated border border-manga-border px-3 py-2 text-manga-text focus:outline-none focus:border-manga-accent"
                 required
               />

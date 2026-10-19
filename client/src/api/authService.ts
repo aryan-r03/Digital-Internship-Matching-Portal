@@ -1,6 +1,6 @@
 const API_BASE = ((import.meta as any).env?.VITE_API_BASE as string) || 'http://localhost:5001/api/v1';
-const TOKEN_KEY = 'kaamsetu_auth_token';
-const USER_KEY = 'kaamsetu_auth_user';
+const TOKEN_KEY = 'KaamSetu_auth_token';
+const USER_KEY = 'KaamSetu_auth_user';
 
 export interface AuthUser {
   id: number;

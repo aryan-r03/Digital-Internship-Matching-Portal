@@ -13,7 +13,7 @@ export const Footer: React.FC = () => {
         <div className="max-w-7xl mx-auto flex items-center justify-center gap-2 text-xs font-mono text-amber-200/90 text-center">
           <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0" />
           <span>
-            <strong>DATA INTEGRITY NOTICE:</strong> All job and internship listings displayed on Kaamsetu are explicitly <strong>sample/mock demonstration opportunities</strong>. They are not active or verified vacancies.
+            <strong>DATA INTEGRITY NOTICE:</strong> All job and internship listings displayed on KaamSetu are explicitly <strong>sample/mock demonstration opportunities</strong>. They are not active or verified vacancies.
           </span>
         </div>
       </div>
@@ -28,7 +28,7 @@ export const Footer: React.FC = () => {
               </div>
               <div className="flex items-center gap-2">
                 <span className="font-display font-extrabold text-xl tracking-wider text-manga-text uppercase">
-                  Kaamsetu<span className="text-manga-accent">.</span>IO
+                  KaamSetu<span className="text-manga-accent">.</span>IO
                 </span>
                 <span className="text-sm font-hindi text-manga-accent font-bold">
                   // कामसूत्र
@@ -112,7 +112,7 @@ export const Footer: React.FC = () => {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-manga-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-manga-dim">
           <div>
-            © {new Date().getFullYear()} Kaamsetu // कामसूत्र. Next-Gen Career & Internship Interface.
+            © {new Date().getFullYear()} KaamSetu // कामसूत्र. Next-Gen Career & Internship Interface.
           </div>
           <div className="flex items-center gap-3">
             <span className="font-hindi text-manga-muted">सफ़र • लक्ष्य • तैयारी • सफलता</span>

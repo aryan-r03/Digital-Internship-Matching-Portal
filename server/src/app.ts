@@ -65,8 +65,8 @@ const getHealthStatus = () => {
 
   return {
     status: dbStatus === 'healthy' ? 'healthy' : 'degraded',
-    service: 'kaamsetu-api',
-    platform: 'Kaamsetu // कामसूत्र Career & Internship Platform',
+    service: 'KaamSetu-api',
+    platform: 'KaamSetu // कामसूत्र Career & Internship Platform',
     version: '2.0.0',
     timestamp: new Date().toISOString(),
     database: dbStatus,
@@ -81,7 +81,7 @@ app.get('/api/v1/health', (req, res) => {
   res.json(getHealthStatus());
 });
 
-// 7. Mount Kaamsetu Phase 2 Career Portal Routes
+// 7. Mount KaamSetu Phase 2 Career Portal Routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/profile', profileRoutes);
 app.use('/api/v1/internships', internshipRoutes);

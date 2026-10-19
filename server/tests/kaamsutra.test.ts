@@ -5,15 +5,15 @@ import { db } from '../src/db/index.js';
 import { MatchingService } from '../src/services/matchingService.js';
 import { Internship, CandidateProfile } from '../src/types/index.js';
 
-describe('Kaamsetu Phase 2 — Production Backend Test Suite', () => {
+describe('KaamSetu Phase 2 — Production Backend Test Suite', () => {
   const timestamp = Date.now();
-  const testCandidateEmail = `candidate_${timestamp}@kaamsetu.test`;
+  const testCandidateEmail = `candidate_${timestamp}@KaamSetu.test`;
   const testCandidateUsername = `testcandidate_${timestamp}`;
   const testPassword = 'StrongPassword123!';
   let candidateToken = '';
   let candidateUserId = 0;
 
-  const testCandidate2Email = `candidate2_${timestamp}@kaamsetu.test`;
+  const testCandidate2Email = `candidate2_${timestamp}@KaamSetu.test`;
   const testCandidate2Username = `candidate2_${timestamp}`;
   let candidate2Token = '';
   let candidate2UserId = 0;
@@ -34,7 +34,7 @@ describe('Kaamsetu Phase 2 — Production Backend Test Suite', () => {
       expect(res.headers['x-frame-options']).toBe('DENY');
       expect(res.headers['strict-transport-security']).toBeDefined();
       expect(res.body.status).toBe('healthy');
-      expect(res.body.service).toBe('kaamsetu-api');
+      expect(res.body.service).toBe('KaamSetu-api');
     });
   });
 

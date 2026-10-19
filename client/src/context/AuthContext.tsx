@@ -16,7 +16,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, Setuser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(() => localStorage.getItem('manga_token'));
   const [loading, setLoading] = useState(true);
 
@@ -29,7 +29,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       try {
         const res = await api.getMe();
         if (res.success && res.data) {
-          setUser(res.data);
+          Setuser(res.data);
         } else {
           logout();
         }
@@ -48,7 +48,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (res.success && res.data) {
       localStorage.setItem('manga_token', res.data.token);
       setToken(res.data.token);
-      setUser(res.data.user);
+      Setuser(res.data.user);
     }
   };
 
@@ -57,19 +57,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (res.success && res.data) {
       localStorage.setItem('manga_token', res.data.token);
       setToken(res.data.token);
-      setUser(res.data.user);
+      Setuser(res.data.user);
     }
   };
 
   const logout = () => {
     localStorage.removeItem('manga_token');
     setToken(null);
-    setUser(null);
+    Setuser(null);
   };
 
   const updateUser = (updated: Partial<User>) => {
     if (user) {
-      setUser({ ...user, ...updated });
+      Setuser({ ...user, ...updated });
     }
   };
 
