@@ -66,7 +66,7 @@ export function runSeed() {
   const mangaList = [
     {
       title: 'Chrono Blade: Eclipse',
-      japanese_title: 'クロノ・ブレイド: 蝕',
+      japanese_title: 'काल-असि: ग्रहण',
       slug: 'chrono-blade-eclipse',
       synopsis: 'In an alternate Kamakura period shattered by temporal rifts, an outcast swordsman discovers a cursed obsidian nodachi capable of severing moments in time. As demonic entities known as the Umbra pour through the cosmic seams, he must forge a trail through blood and fractured memories to prevent the eternal eclipse.',
       cover_image: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=800&q=80',
@@ -86,7 +86,7 @@ export function runSeed() {
     },
     {
       title: 'Neon Ronin 2099',
-      japanese_title: 'ネオン浪人 2099',
+      japanese_title: 'नियॉन रोनिन 2099',
       slug: 'neon-ronin-2099',
       synopsis: 'Neo-Shinjuku is governed by omnipotent mega-corporations and neural surveillance grids. Jin, a decommissioned cyber-samurai with obsolete biomechanical augments, operates in the shadow alleys as a mercenary for hire. When an AI containing forbidden pre-collapse consciousness asks for sanctuary, all eight corporate zaibatsus mark him for eradication.',
       cover_image: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80',
@@ -106,7 +106,7 @@ export function runSeed() {
     },
     {
       title: 'Spirit Weaver: Tokyo Underworld',
-      japanese_title: '綾織りの霊界',
+      japanese_title: 'मायावी प्रेतलोक',
       slug: 'spirit-weaver-tokyo-underworld',
       synopsis: 'Hidden beneath Tokyo’s labyrinthine subway terminals exists the Weave—a spiritual mirror dimension where ancestral spirits and malevolent curses clash. High school calligrapher Kaori discovers her ink brush can manipulate the strings of fate itself, pulling her into an arcane underworld civil war.',
       cover_image: 'https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=800&q=80',
@@ -126,7 +126,7 @@ export function runSeed() {
     },
     {
       title: 'Sovereign of the Abyss',
-      japanese_title: '深淵の覇王',
+      japanese_title: 'अथाह सम्राट',
       slug: 'sovereign-of-the-abyss',
       synopsis: 'Cast into the deepest subterranean trench known as the Sunken Hollow, young warrior Ray emerges twenty years later possessing abyssal leviathan blood. Armed with ancient sea-relics and relentless will, he ascends to reclaim his stolen kingdom from the celestial tyrants.',
       cover_image: 'https://images.unsplash.com/photo-1514539079130-25950c84af65?auto=format&fit=crop&w=800&q=80',
@@ -146,7 +146,7 @@ export function runSeed() {
     },
     {
       title: 'Echoes of the Cherry Blossom Court',
-      japanese_title: '桜宮の残響',
+      japanese_title: 'राजप्रसाद की प्रतिध्वनि',
       slug: 'echoes-of-cherry-blossom-court',
       synopsis: 'A mesmerizing tale of court intrigue, forbidden romance, and masked assassins set in the opulent Heian dynasty. When Lady Shiori is selected as imperial concubine, she secretly enters as an undercover agent of the Shadow Lotus clan.',
       cover_image: 'https://images.unsplash.com/photo-1528164344705-475426879c0d?auto=format&fit=crop&w=800&q=80',
@@ -166,7 +166,7 @@ export function runSeed() {
     },
     {
       title: 'Aegis Protocol: Zero',
-      japanese_title: 'イージス計画: 零',
+      japanese_title: 'अभय परियोजना: शून्य',
       slug: 'aegis-protocol-zero',
       synopsis: 'Colossal tectonic bio-titans emerge from oceanic fault lines. Humanity’s remaining survival hinges on the Aegis Strike Units—colossal neural-linked mecha piloted by genetically modified teenagers whose sanity deteriorates with every synchronization battle.',
       cover_image: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80',
@@ -224,7 +224,7 @@ export function runSeed() {
     { pageNumber: 1, imageUrl: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1200&q=90', caption: 'PROLOGUE // THE OBSIDIAN BLADE AWAKENS' },
     { pageNumber: 2, imageUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=90', caption: 'PANEL 1: Midnight rain over Kamakura sanctuary.' },
     { pageNumber: 3, imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=90', caption: 'PANEL 2: "The temporal seam has fractured."' },
-    { pageNumber: 4, imageUrl: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=90', caption: 'PANEL 3: Blade unsheathed — sound effect: ドドド (DODODO)' },
+    { pageNumber: 4, imageUrl: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=90', caption: 'PANEL 3: Blade unsheathed — sound effect: धड़-धड़ (DHAD-DHAD)' },
     { pageNumber: 5, imageUrl: 'https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=1200&q=90', caption: 'PANEL 4: The first severed second.' }
   ];
 
@@ -232,7 +232,7 @@ export function runSeed() {
     { pageNumber: 1, imageUrl: 'https://images.unsplash.com/photo-1514539079130-25950c84af65?auto=format&fit=crop&w=1200&q=90', caption: 'CHAPTER 2 // VALLEY OF SHATTERED CLOCKS' },
     { pageNumber: 2, imageUrl: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1200&q=90', caption: 'PANEL 1: The Umbra swarm gathers in the mist.' },
     { pageNumber: 3, imageUrl: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=1200&q=90', caption: 'PANEL 2: "Step back, priestess. This is no ordinary cut."' },
-    { pageNumber: 4, imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=90', caption: 'PANEL 3: The eclipse deepens — sound effect: ゴゴゴ (GOGOGO)' }
+    { pageNumber: 4, imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=90', caption: 'PANEL 3: The eclipse deepens — sound effect: गड़-गड़ (GAD-GAD)' }
   ];
 
   const ch1Result = insertChapter.run(chronoBladeId, 1, 'The Obsidian Severance', JSON.stringify(chronoPagesCh1));

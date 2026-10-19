@@ -128,7 +128,7 @@ export const MangaDetail: React.FC = () => {
               />
               <div className="absolute top-2 left-2">
                 <Badge variant="kanji" size="sm">
-                  {manga.status === 'Completed' ? '完結' : '連載中'}
+                  {manga.status === 'Completed' ? 'पूर्ण' : 'जारी'}
                 </Badge>
               </div>
             </div>
@@ -148,7 +148,7 @@ export const MangaDetail: React.FC = () => {
                   {manga.title}
                 </h1>
                 {manga.japanese_title && (
-                  <p className="text-lg sm:text-xl font-japanese font-bold text-manga-accent tracking-widest pt-1">
+                  <p className="text-lg sm:text-xl font-hindi font-bold text-manga-accent tracking-widest pt-1">
                     {manga.japanese_title}
                   </p>
                 )}
@@ -232,7 +232,7 @@ export const MangaDetail: React.FC = () => {
                 : 'border-transparent text-manga-muted hover:text-white'
             }`}
           >
-            Chapters ({chapters.length}) // 連載話
+            Chapters ({chapters.length}) // अध्याय
           </button>
           <button
             onClick={() => setActiveTab('reviews')}
@@ -242,7 +242,7 @@ export const MangaDetail: React.FC = () => {
                 : 'border-transparent text-manga-muted hover:text-white'
             }`}
           >
-            Reviews ({reviews.length}) // 批評
+            Reviews ({reviews.length}) // समीक्षा
           </button>
           <button
             onClick={() => setActiveTab('about')}
@@ -252,7 +252,7 @@ export const MangaDetail: React.FC = () => {
                 : 'border-transparent text-manga-muted hover:text-white'
             }`}
           >
-            About & Details // 作品詳細
+            About & Details // विवरण
           </button>
         </div>
 
@@ -427,7 +427,7 @@ export const MangaDetail: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="md:col-span-2 p-6 bg-manga-surface border border-manga-border shadow-panel space-y-4">
               <h3 className="text-sm font-bold font-mono uppercase text-manga-accent tracking-wider">
-                Synopsis & Narrative // あらすじ
+                Synopsis & Narrative // सारांश
               </h3>
               <p className="text-sm font-mono text-manga-text leading-relaxed whitespace-pre-line">
                 {manga.synopsis}
@@ -457,8 +457,8 @@ export const MangaDetail: React.FC = () => {
               </h3>
               <div className="space-y-2.5">
                 <div className="flex justify-between py-1 border-b border-manga-border/50">
-                  <span className="text-manga-muted">Japanese Title:</span>
-                  <span className="text-white font-japanese">{manga.japanese_title || 'N/A'}</span>
+                  <span className="text-manga-muted">Regional Title:</span>
+                  <span className="text-white font-hindi">{manga.japanese_title || 'N/A'}</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-manga-border/50">
                   <span className="text-manga-muted">Target Demographic:</span>

@@ -16,7 +16,7 @@ export const MangaCard: React.FC<MangaCardProps> = ({ manga, onBookmarkUpdated }
   const [showBookmarkModal, setShowBookmarkModal] = useState(false);
   const [currentBookmark, setCurrentBookmark] = useState(manga.userBookmark?.status || null);
 
-  const statusKanji = manga.status === 'Completed' ? '完結' : '連載中';
+  const statusHindi = manga.status === 'Completed' ? 'पूर्ण' : 'जारी';
 
   return (
     <div className="group relative flex flex-col bg-manga-surface border border-manga-border hover:border-manga-accent transition-all duration-300 shadow-panel hover:shadow-panel-accent">
@@ -38,7 +38,7 @@ export const MangaCard: React.FC<MangaCardProps> = ({ manga, onBookmarkUpdated }
         {/* Top Badges */}
         <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between gap-1 pointer-events-none">
           <Badge variant="kanji" size="sm">
-            {statusKanji}
+            {statusHindi}
           </Badge>
           <div className="flex items-center gap-1 bg-black/85 backdrop-blur-sm border border-manga-gold/50 px-2 py-0.5 text-xs font-mono font-bold text-manga-gold">
             <Star className="w-3 h-3 fill-manga-gold text-manga-gold" />
@@ -79,7 +79,7 @@ export const MangaCard: React.FC<MangaCardProps> = ({ manga, onBookmarkUpdated }
           </Link>
 
           {manga.japanese_title && (
-            <p className="text-xs text-manga-muted font-japanese tracking-wider truncate mt-0.5">
+            <p className="text-xs text-manga-muted font-hindi tracking-wider truncate mt-0.5">
               {manga.japanese_title}
             </p>
           )}

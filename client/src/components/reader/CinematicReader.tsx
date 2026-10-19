@@ -385,7 +385,7 @@ export const CinematicReader: React.FC<CinematicReaderProps> = ({ chapter }) => 
 
             <div className="relative z-10 text-center space-y-4">
               <span className="inline-block px-3 py-1 bg-manga-accent text-white font-mono text-xs uppercase font-bold tracking-widest shadow-glow-red">
-                第 {chapter.chapter_number} 話 // CHAPTER COMPLETED
+                अध्याय {chapter.chapter_number} // CHAPTER COMPLETED
               </span>
               <h2 className="text-2xl font-bold font-display uppercase tracking-wider text-white">
                 {chapter.title}
@@ -429,7 +429,7 @@ export const CinematicReader: React.FC<CinematicReaderProps> = ({ chapter }) => 
                   <MessageSquare className="w-4 h-4 text-manga-accent" />
                   <span>Reader Discussion ({comments.length})</span>
                 </h3>
-                <span className="text-xs text-manga-dim font-japanese">読者の感想</span>
+                <span className="text-xs text-manga-dim font-hindi">पाठक समीक्षा</span>
               </div>
 
               {/* Post comment form */}

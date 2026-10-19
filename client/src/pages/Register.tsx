@@ -54,16 +54,16 @@ export const Register: React.FC = () => {
 
           <div className="relative z-10">
             <Badge variant="kanji" size="sm">
-              新人登録 // NEW RECRUIT
+              अभ्यर्थी पंजीकरण // NEW RECRUIT
             </Badge>
           </div>
 
           <div className="relative z-10 space-y-2">
             <h2 className="text-3xl font-display font-black uppercase text-white leading-tight">
-              Join the NextGen Manga Circle
+              Join the KaamSutra Network
             </h2>
             <p className="text-xs font-mono text-manga-muted leading-relaxed">
-              Create a reader account to save your library and write critiques, or register as a creator to publish original manga series and chapters.
+              Create a candidate account to save opportunities and track applications, or register as a recruiter to post roles.
             </p>
           </div>
         </div>
@@ -72,7 +72,7 @@ export const Register: React.FC = () => {
         <div className="p-6 sm:p-10 space-y-6 flex flex-col justify-center">
           <div>
             <span className="text-[10px] font-mono uppercase tracking-widest text-manga-accent font-bold">
-              REGISTRATION // 新規登録
+              REGISTRATION // नया खाता
             </span>
             <h1 className="text-2xl font-bold font-display uppercase tracking-wider text-white mt-1">
               Create New Account
@@ -146,7 +146,7 @@ export const Register: React.FC = () => {
                       : 'border-manga-border text-manga-muted bg-manga-elevated'
                   }`}
                 >
-                  Reader // 読者
+                  Candidate // अभ्यर्थी
                 </button>
                 <button
                   type="button"
@@ -157,7 +157,7 @@ export const Register: React.FC = () => {
                       : 'border-manga-border text-manga-muted bg-manga-elevated'
                   }`}
                 >
-                  Creator // 作家
+                  Recruiter // नियोक्ता
                 </button>
               </div>
             </div>

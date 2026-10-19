@@ -39,7 +39,7 @@ export const ReaderPage: React.FC = () => {
       <div className="min-h-screen bg-black flex flex-col items-center justify-center space-y-4">
         <div className="w-12 h-12 border-2 border-manga-accent border-t-transparent rounded-full animate-spin" />
         <p className="font-mono text-xs uppercase tracking-widest text-manga-muted animate-pulse">
-          Opening Chapter Codex... // 読込中
+          Opening Opportunity Codex... // लोड हो रहा है...
         </p>
       </div>
     );

@@ -123,7 +123,7 @@ export const Explore: React.FC = () => {
       {/* Page Header */}
       <div className="border-b-2 border-manga-border pb-4">
         <span className="text-xs font-mono font-bold text-manga-accent uppercase tracking-widest">
-          CATALOG ARCHIVE // 全作品目録
+          CATALOG ARCHIVE // संपूर्ण सूची
         </span>
         <h1 className="text-3xl sm:text-4xl font-black font-display uppercase tracking-wider text-white mt-1">
           Explore All Series
@@ -168,7 +168,7 @@ export const Explore: React.FC = () => {
           {/* Genre */}
           <div>
             <label className="block text-manga-muted uppercase tracking-wider mb-1">
-              Genre // ジャンル
+              Genre // कार्यक्षेत्र
             </label>
             <select
               value={genre}
@@ -186,7 +186,7 @@ export const Explore: React.FC = () => {
           {/* Demographic */}
           <div>
             <label className="block text-manga-muted uppercase tracking-wider mb-1">
-              Demographic // 読者層
+              Demographic // लक्ष्य वर्ग
             </label>
             <select
               value={demographic}
@@ -204,7 +204,7 @@ export const Explore: React.FC = () => {
           {/* Status */}
           <div>
             <label className="block text-manga-muted uppercase tracking-wider mb-1">
-              Publication Status // 状態
+              Publication Status // स्थिति
             </label>
             <select
               value={status}
@@ -222,7 +222,7 @@ export const Explore: React.FC = () => {
           {/* Sort */}
           <div>
             <label className="block text-manga-muted uppercase tracking-wider mb-1">
-              Sort Sequence // 並び順
+              Sort Sequence // क्रम
             </label>
             <select
               value={sort}

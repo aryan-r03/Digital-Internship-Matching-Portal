@@ -52,10 +52,10 @@ export const Library: React.FC = () => {
         </div>
         <div className="space-y-2">
           <h2 className="text-3xl font-display font-black uppercase tracking-wider text-white">
-            Personal Reading Room // 書架
+            Personal Vault // व्यक्तिगत संग्रह
           </h2>
           <p className="text-xs font-mono text-manga-muted leading-relaxed">
-            Please log in or select a demo profile to view your bookmarked manga, track chapter progress, and auto-resume where you left off.
+            Please log in or select a demo profile to view your bookmarked opportunities, track progress, and auto-resume where you left off.
           </p>
         </div>
 
@@ -65,10 +65,10 @@ export const Library: React.FC = () => {
           </p>
           <div className="flex justify-center gap-3">
             <Button variant="primary" size="sm" onClick={() => quickLogin('reader')}>
-              YukiReader (Reader)
+              YukiReader (Candidate)
             </Button>
             <Button variant="outline" size="sm" onClick={() => quickLogin('creator')}>
-              KenshiArtisan (Creator)
+              KenshiArtisan (Recruiter)
             </Button>
             <Button variant="outline" size="sm" onClick={() => quickLogin('admin')}>
               MangaEditor (Admin)
@@ -88,11 +88,11 @@ export const Library: React.FC = () => {
   }
 
   const tabs = [
-    { id: 'all', label: 'All Titles', kanji: '全て' },
-    { id: 'reading', label: 'Currently Reading', kanji: '読書中' },
-    { id: 'plan_to_read', label: 'Plan to Read', kanji: '予定' },
-    { id: 'completed', label: 'Completed', kanji: '読了' },
-    { id: 'dropped', label: 'Dropped', kanji: '中断' },
+    { id: 'all', label: 'All Titles', hindi: 'सभी' },
+    { id: 'reading', label: 'Currently Reading', hindi: 'सक्रिय' },
+    { id: 'plan_to_read', label: 'Plan to Read', hindi: 'योजना' },
+    { id: 'completed', label: 'Completed', hindi: 'पूर्ण' },
+    { id: 'dropped', label: 'Dropped', hindi: 'स्थगित' },
   ];
 
   return (
@@ -101,7 +101,7 @@ export const Library: React.FC = () => {
       <div className="border-b-2 border-manga-border pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
           <span className="text-xs font-mono font-bold text-manga-accent uppercase tracking-widest">
-            PERSONAL VAULT // 読書室
+            PERSONAL VAULT // कार्यकक्ष
           </span>
           <h1 className="text-3xl sm:text-4xl font-black font-display uppercase tracking-wider text-white mt-1">
             My Reading Library
@@ -129,7 +129,7 @@ export const Library: React.FC = () => {
                 : 'border-manga-border hover:border-white text-manga-muted hover:text-white bg-manga-surface'
             }`}
           >
-            {t.label} <span className="font-japanese text-[10px] opacity-75">{t.kanji}</span>
+            {t.label} <span className="font-hindi text-[10px] opacity-75">{t.hindi}</span>
           </button>
         ))}
       </div>
@@ -190,7 +190,7 @@ export const Library: React.FC = () => {
                   </Link>
 
                   {b.manga.japanese_title && (
-                    <p className="text-[11px] text-manga-muted font-japanese truncate">
+                    <p className="text-[11px] text-manga-muted font-hindi truncate">
                       {b.manga.japanese_title}
                     </p>
                   )}

@@ -173,7 +173,7 @@ https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=cro
         </div>
         <div className="space-y-2">
           <h2 className="text-3xl font-display font-black uppercase text-white">
-            Creator Studio // 創作工房
+            Creator Studio // कार्यशाला
           </h2>
           <p className="text-xs font-mono text-manga-muted leading-relaxed">
             Authentication is required to access the authoring workbench. Log in as a Creator or Admin to upload series and publish chapters.
@@ -203,7 +203,7 @@ https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=cro
       <div className="border-b-2 border-manga-border pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
           <span className="text-xs font-mono font-bold text-manga-accent uppercase tracking-widest">
-            PUBLISHING WORKBENCH // 創作工房
+            PUBLISHING WORKBENCH // कार्यशाला
           </span>
           <h1 className="text-3xl sm:text-4xl font-black font-display uppercase tracking-wider text-white mt-1">
             Manga Creator Studio
@@ -261,7 +261,7 @@ https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=cro
               : 'border-transparent text-manga-muted hover:text-white'
           }`}
         >
-          Series Catalog ({mangaList.length}) // 管理
+          Series Catalog ({mangaList.length}) // प्रबंधन
         </button>
         <button
           onClick={() => { setActiveTab('new_series'); setFeedback(null); }}
@@ -271,7 +271,7 @@ https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=cro
               : 'border-transparent text-manga-muted hover:text-white'
           }`}
         >
-          Publish New Series // 連載登録
+          Publish New Series // नई प्रविष्टि
         </button>
         <button
           onClick={() => { setActiveTab('new_chapter'); setFeedback(null); }}
@@ -281,7 +281,7 @@ https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=cro
               : 'border-transparent text-manga-muted hover:text-white'
           }`}
         >
-          Publish Chapter // 話追加
+          Publish Chapter // अध्याय जोड़ें
         </button>
       </div>
 
@@ -390,14 +390,14 @@ https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=cro
 
             <div>
               <label className="block text-manga-muted uppercase tracking-wider mb-1">
-                Japanese Title (Kanji/Kana)
+                Regional Title (Hindi / Devanagari)
               </label>
               <input
                 type="text"
-                placeholder="e.g. クロノ・ブレイド: 蝕"
+                placeholder="e.g. काल-असि: ग्रहण"
                 value={newSeries.japanese_title}
                 onChange={(e) => setNewSeries({ ...newSeries, japanese_title: e.target.value })}
-                className="w-full bg-manga-elevated border border-manga-border p-2.5 text-manga-text focus:outline-none focus:border-manga-accent font-japanese"
+                className="w-full bg-manga-elevated border border-manga-border p-2.5 text-manga-text focus:outline-none focus:border-manga-accent font-hindi"
               />
             </div>
           </div>
@@ -481,10 +481,10 @@ https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=cro
                 onChange={(e) => setNewSeries({ ...newSeries, demographic: e.target.value as any })}
                 className="w-full bg-manga-elevated border border-manga-border p-2.5 text-manga-text focus:outline-none focus:border-manga-accent"
               >
-                <option value="Shonen">Shonen // 少年</option>
-                <option value="Seinen">Seinen // 青年</option>
-                <option value="Shojo">Shojo // 少女</option>
-                <option value="Josei">Josei // 女性</option>
+                <option value="Shonen">Shonen // युवा</option>
+                <option value="Seinen">Seinen // वयस्क</option>
+                <option value="Shojo">Shojo // किशोरी</option>
+                <option value="Josei">Josei // महिला</option>
               </select>
             </div>
           </div>

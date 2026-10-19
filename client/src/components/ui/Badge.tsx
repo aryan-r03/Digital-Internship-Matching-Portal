@@ -20,8 +20,9 @@ export const Badge: React.FC<BadgeProps> = ({
     accent: 'bg-manga-accent text-white font-semibold shadow-glow-red',
     gold: 'bg-manga-gold/10 border border-manga-gold text-manga-gold font-semibold',
     outline: 'border border-white/20 text-manga-muted hover:border-white/40',
-    kanji: 'bg-black border border-manga-accent text-manga-accent font-japanese font-bold tracking-wider',
-  }[variant];
+    kanji: 'bg-black border border-manga-accent text-manga-accent font-hindi font-bold tracking-wider',
+    hindi: 'bg-black border border-manga-accent text-manga-accent font-hindi font-bold tracking-wider',
+  }[variant as string] || 'bg-manga-surface border border-manga-border text-manga-text';
 
   return (
     <span

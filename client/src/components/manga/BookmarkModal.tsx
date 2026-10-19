@@ -27,10 +27,10 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
   const [selectedStatus, setSelectedStatus] = useState<string>(currentStatus || 'reading');
 
   const options = [
-    { id: 'reading', label: 'Currently Reading', desc: 'Track chapter progress and auto-resume', kanji: '読書中' },
-    { id: 'plan_to_read', label: 'Plan to Read', desc: 'Save in your backlog for upcoming reading', kanji: '予定' },
-    { id: 'completed', label: 'Completed', desc: 'Finished reading all available chapters', kanji: '読了' },
-    { id: 'dropped', label: 'Dropped', desc: 'Temporarily or permanently shelved', kanji: '中断' },
+    { id: 'reading', label: 'Currently Reading', desc: 'Track chapter progress and auto-resume', hindi: 'अध्ययनरत' },
+    { id: 'plan_to_read', label: 'Plan to Read', desc: 'Save in your backlog for upcoming reading', hindi: 'योजना' },
+    { id: 'completed', label: 'Completed', desc: 'Finished reading all available chapters', hindi: 'पूर्ण' },
+    { id: 'dropped', label: 'Dropped', desc: 'Temporarily or permanently shelved', hindi: 'स्थगित' },
   ];
 
   const handleSave = async () => {
@@ -91,7 +91,7 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-bold text-manga-text">{opt.label}</span>
-                    <span className="text-[10px] text-manga-accent font-japanese">{opt.kanji}</span>
+                    <span className="text-[10px] text-manga-accent font-hindi">{opt.hindi}</span>
                   </div>
                   <p className="text-xs text-manga-dim mt-0.5">{opt.desc}</p>
                 </div>

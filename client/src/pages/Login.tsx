@@ -56,16 +56,16 @@ export const Login: React.FC = () => {
 
           <div className="relative z-10">
             <Badge variant="kanji" size="sm">
-              次世代の漫画 // CODENAME
+              कामसूत्र // CODENAME
             </Badge>
           </div>
 
           <div className="relative z-10 space-y-2">
             <h2 className="text-3xl font-display font-black uppercase text-white leading-tight">
-              Enter the Manga Sanctuary
+              Enter the Career Sanctuary
             </h2>
             <p className="text-xs font-mono text-manga-muted leading-relaxed">
-              Resume your chapter bookmarks, review original serializations, and immerse yourself in pure graphic storytelling.
+              Resume your opportunity bookmarks, review applications, and immerse yourself in high-impact engineering careers.
             </p>
           </div>
         </div>
@@ -74,7 +74,7 @@ export const Login: React.FC = () => {
         <div className="p-6 sm:p-10 space-y-6 flex flex-col justify-center">
           <div>
             <span className="text-[10px] font-mono uppercase tracking-widest text-manga-accent font-bold">
-              AUTHENTICATION // 入場
+              AUTHENTICATION // प्रवेश
             </span>
             <h1 className="text-2xl font-bold font-display uppercase tracking-wider text-white mt-1">
               Sign In to Account

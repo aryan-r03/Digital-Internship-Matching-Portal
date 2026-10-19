@@ -1,6 +1,6 @@
-# NEXTGEN MANGA // 次世代の漫画
+# KAAMSUTRA // कामसूत्र
 
-> **Production-Grade Full-Stack Manga Platform with Cinematic Editorial Manga Aesthetics**
+> **Production-Grade Full-Stack Manga Platform with Cinematic Editorial Aesthetics**
 
 [![Architecture](https://img.shields.io/badge/Architecture-Monorepo%20Workspaces-E63946?style=flat-square)](#)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue?style=flat-square)](#)
@@ -13,12 +13,12 @@
 
 ## 1. PROJECT OVERVIEW
 
-**NextGen Manga** is an editorial manga publishing, reading, and community platform inspired by high-contrast manga print art direction, Japanese typography, and cinematic framing.
+**KaamSutra // कामसूत्र** is an editorial manga publishing, reading, and community platform inspired by high-contrast print art direction, Indian & Devanagari typography, and cinematic framing.
 
 Unlike generic anime templates, the application implements an intentional visual design language:
 - Predominantly black, charcoal, and off-white surfaces (`#080808`, `#111111`, `#191919`, `#F5F3EF`).
 - Halftone screentone dot textures and speed lines accents.
-- Japanese editorial typography markers (`巻頭カラー`, `人気ランキング`, `新着`, `読書室`).
+- Hindi editorial typography markers (`मुख्य पृष्ठ`, `लोकप्रिय क्रम`, `नवीन`, `कार्यकक्ष`).
 - Restrained vermilion red accent (`#E63946`) for dramatic punctuation.
 - Panel-by-panel framing with ink-like borders.
 
@@ -30,7 +30,7 @@ Unlike generic anime templates, the application implements an intentional visual
 - **Three Reading Modes**:
   1. **Vertical Strip Mode** (Webtoon format) — continuous vertical panel scrolling with smooth reading flow.
   2. **Single Page Mode** — high-impact cinematic frame with keyboard arrows, progress slider, and fullscreen mode.
-  3. **Double Spread Mode** — traditional Japanese two-page book spread with RTL/LTR directional toggles.
+  3. **Double Spread Mode** — traditional two-page book spread with RTL/LTR directional toggles.
 - **Four Atmospheric Visual Filters**:
   - `Normal Art`: High fidelity color / grayscale original panels.
   - `Noir Ink`: High-contrast grayscale noir simulation.
@@ -41,11 +41,11 @@ Unlike generic anime templates, the application implements an intentional visual
 - **Reader Discussions**: Real-time chapter commentary section with timestamped feedback.
 
 ### 🔍 2. Catalog & Discovery Archive (`/explore`)
-- Instant debounced search with live keyword filtering across title, Japanese title, author, artist, and synopsis.
+- Instant debounced search with live keyword filtering across title, regional Hindi title, author, artist, and synopsis.
 - Multi-dimensional taxonomy filters:
   - **Genre**: Dark Fantasy, Cyberpunk, Supernatural, Action, Psychological, Historical, Mecha, Romance, Mystery, etc.
-  - **Demographic**: Shonen (`少年`), Seinen (`青年`), Shojo (`少女`), Josei (`女性`).
-  - **Status**: Ongoing (`連載中`) vs Completed (`完結`).
+  - **Demographic**: Shonen (`युवा`), Seinen (`वयस्क`), Shojo (`किशोरी`), Josei (`महिला`).
+  - **Status**: Ongoing (`जारी`) vs Completed (`पूर्ण`).
   - **Sort**: Trending Hits, Highest Rated, Recently Published, Alphabetical (A-Z).
 - Screentone skeleton loading states and manga-framed empty states.
 
