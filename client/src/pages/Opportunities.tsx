@@ -31,11 +31,15 @@ export const Opportunities: React.FC = () => {
   const [hasPPOOnly, setHasPPOOnly] = useState<boolean>(
     searchParams.get('hasPPO') === 'true'
   );
+  const [source, setSource] = useState<'all' | 'live' | 'demo'>(
+    (searchParams.get('source') as any) || 'all'
+  );
   const [sortBy, setSortBy] = useState<any>(searchParams.get('sortBy') || 'recommended');
 
   const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [sourceCounts, setSourceCounts] = useState<{ liveCount: number; demoCount: number } | null>(null);
 
   const categories = [
     'All',
@@ -80,12 +84,16 @@ export const Opportunities: React.FC = () => {
         location: location !== 'All' ? location : undefined,
         minStipend: minStipend > 0 ? minStipend : undefined,
         hasPPOOnly,
+        source: source !== 'all' ? source : undefined,
         sortBy,
       };
 
       const res = await opportunityService.getOpportunities(filters);
       setOpportunities(res.items);
       setTotal(res.total);
+      if (res.sources) {
+        setSourceCounts(res.sources);
+      }
     } catch (err) {
       console.error('Failed to load opportunities:', err);
     } finally {
@@ -95,7 +103,7 @@ export const Opportunities: React.FC = () => {
 
   useEffect(() => {
     fetchOpportunities();
-  }, [category, roleType, workMode, experienceLevel, location, minStipend, hasPPOOnly, sortBy]);
+  }, [category, roleType, workMode, experienceLevel, location, minStipend, hasPPOOnly, source, sortBy]);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -146,10 +154,18 @@ export const Opportunities: React.FC = () => {
           </p>
         </div>
 
-        {/* Demo data badge */}
-        <div className="p-2.5 bg-neutral-900 border border-amber-500/30 text-[11px] font-mono text-amber-300 flex items-center gap-1.5 shrink-0">
-          <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />
-          <span>Demo data — not live opportunities</span>
+        {/* Verification Status Badges */}
+        <div className="flex flex-wrap items-center gap-2">
+          {sourceCounts && sourceCounts.liveCount > 0 && (
+            <div className="p-2 bg-emerald-950/80 border border-emerald-500/50 text-[11px] font-mono text-emerald-300 flex items-center gap-1.5 shrink-0">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>{sourceCounts.liveCount} Verified Live Roles</span>
+            </div>
+          )}
+          <div className="p-2 bg-neutral-900 border border-amber-500/30 text-[11px] font-mono text-amber-300 flex items-center gap-1.5 shrink-0">
+            <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />
+            <span>Sample / Demo Records Labelled</span>
+          </div>
         </div>
       </div>
 
@@ -290,6 +306,22 @@ export const Opportunities: React.FC = () => {
                   {s.label}
                 </option>
               ))}
+            </select>
+          </div>
+
+          {/* Source Feed Selection */}
+          <div>
+            <label className="block text-manga-dim uppercase tracking-wider mb-1 text-[10px]">
+              Listing Source
+            </label>
+            <select
+              value={source}
+              onChange={(e) => setSource(e.target.value as any)}
+              className="w-full bg-manga-elevated border border-manga-border p-2 text-manga-text focus:outline-none focus:border-manga-accent"
+            >
+              <option value="all">All Sources</option>
+              <option value="live">Verified Live (RemoteOK)</option>
+              <option value="demo">Demo Records (Local)</option>
             </select>
           </div>
         </div>

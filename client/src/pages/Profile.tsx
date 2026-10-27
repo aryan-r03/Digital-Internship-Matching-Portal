@@ -26,6 +26,36 @@ export const Profile: React.FC = () => {
   );
   const [newSkillInput, setNewSkillInput] = useState('');
   const [savedFeedback, setSavedFeedback] = useState(false);
+  const [resumeUploading, setResumeUploading] = useState(false);
+  const [resumeError, setResumeError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function loadBackendProfile() {
+      const backend = await opportunityService.fetchProfileFromBackend();
+      if (backend) {
+        setProfile(backend);
+      }
+    }
+    loadBackendProfile();
+  }, []);
+
+  const handleResumeFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setResumeUploading(true);
+    setResumeError(null);
+    const res = await opportunityService.uploadResumeToBackend(file.name, file);
+    if (res.success) {
+      const updated = { ...profile, resumeFileName: res.filename || file.name };
+      setProfile(updated);
+      opportunityService.updateProfile(updated);
+      setSavedFeedback(true);
+      setTimeout(() => setSavedFeedback(false), 3000);
+    } else {
+      setResumeError(res.error || 'Failed to upload PDF resume.');
+    }
+    setResumeUploading(false);
+  };
 
   // Recalculate completion percentage dynamically
   const calculateCompletion = (p: CandidateProfile): number => {
@@ -384,7 +414,49 @@ export const Profile: React.FC = () => {
           </div>
         </div>
 
-        {/* Section 5: Work Preferences */}
+        {/* Section 5: Resume & Verified Documents */}
+        <div className="p-6 bg-manga-surface border border-manga-border shadow-panel space-y-4">
+          <h2 className="text-sm font-bold uppercase text-white border-b border-manga-border pb-2 flex items-center justify-between">
+            <span className="flex items-center gap-2">
+              <FileText className="w-4 h-4 text-manga-accent" />
+              <span>Résumé & Credentials // बायोडाटा</span>
+            </span>
+            <span className="text-xs text-manga-dim font-mono">PDF Only (Max 5MB)</span>
+          </h2>
+
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 bg-manga-elevated border border-manga-border">
+            <div className="space-y-1">
+              <div className="text-xs font-bold text-white flex items-center gap-2">
+                <FileText className="w-4 h-4 text-manga-accent" />
+                <span>{profile.resumeFileName || 'No resume uploaded yet'}</span>
+              </div>
+              <p className="text-[11px] text-manga-muted font-mono">
+                {profile.resumeFileName
+                  ? 'Active resume attached to your KaamSetu applications and backend profile.'
+                  : 'Upload your verified PDF resume to apply with 1-click matching.'}
+              </p>
+              {resumeError && (
+                <p className="text-xs text-red-400 font-mono mt-1">{resumeError}</p>
+              )}
+            </div>
+
+            <div>
+              <label className="inline-flex items-center gap-2 px-3 py-1.5 bg-black border border-manga-border hover:border-manga-accent text-xs font-mono uppercase tracking-wider text-white cursor-pointer transition-colors">
+                <FileText className="w-3.5 h-3.5 text-manga-accent" />
+                <span>{resumeUploading ? 'Uploading...' : 'Upload PDF'}</span>
+                <input
+                  type="file"
+                  accept="application/pdf"
+                  onChange={handleResumeFileChange}
+                  disabled={resumeUploading}
+                  className="hidden"
+                />
+              </label>
+            </div>
+          </div>
+        </div>
+
+        {/* Section 6: Work Preferences */}
         <div className="p-6 bg-manga-surface border border-manga-border shadow-panel space-y-4">
           <h2 className="text-sm font-bold uppercase text-white border-b border-manga-border pb-2 flex items-center justify-between">
             <span>Work Preferences</span>

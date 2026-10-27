@@ -497,7 +497,10 @@ const STORAGE_APPLICATIONS = 'KaamSetu_applied_records';
 const STORAGE_PROFILE = 'KaamSetu_candidate_profile';
 
 function getAuthHeader(): Record<string, string> {
-  const token = localStorage.getItem('KaamSetu_auth_token');
+  const token =
+    localStorage.getItem('kaamsetu_auth_token') ||
+    localStorage.getItem('KaamSetu_auth_token') ||
+    localStorage.getItem('manga_token');
   return token ? { Authorization: `Bearer ${token}` } : {};
 }
 
@@ -508,7 +511,7 @@ function mapBackendInternship(b: any): Opportunity {
     company: {
       name: b.company_name,
       logoUrl: b.company_logo || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=128&auto=format&fit=crop&q=80',
-      website: b.company_website || 'https://KaamSetu.internal',
+      website: b.company_website || b.source_url || 'https://KaamSetu.internal',
       isVerified: Boolean(b.is_verified),
       industry: b.category,
       headquarters: b.location,
@@ -538,7 +541,11 @@ function mapBackendInternship(b: any): Opportunity {
     applicantCount: b.applicant_count || 14,
     openings: b.openings || 2,
     isFeatured: true,
-    isMockData: true,
+    isMockData: Boolean(b.is_mock_data ?? 1),
+    sourceName: b.source_name || (b.is_mock_data === 0 ? 'RemoteOK' : 'Internal'),
+    sourceUrl: b.source_url,
+    applyUrl: b.apply_url || b.source_url,
+    lastVerifiedAt: b.last_verified_at,
   };
 }
 
@@ -548,6 +555,7 @@ export const opportunityService = {
     items: Opportunity[];
     total: number;
     isLiveBackend?: boolean;
+    sources?: { liveCount: number; demoCount: number };
   }> => {
     // Attempt live backend fetch
     try {
@@ -558,6 +566,7 @@ export const opportunityService = {
       if (filters.roleType && filters.roleType !== 'All') params.append('roleType', filters.roleType);
       if (filters.minStipend) params.append('minStipend', String(filters.minStipend));
       if (filters.hasPPOOnly) params.append('ppoOnly', '1');
+      if (filters.source && filters.source !== 'all') params.append('source', filters.source);
 
       if (filters.sortBy === 'stipend_high') params.append('sort', 'stipend');
       else if (filters.sortBy === 'deadline_soon') params.append('sort', 'deadline');
@@ -931,6 +940,79 @@ export const opportunityService = {
     }
 
     return merged;
+  },
+
+  fetchProfileFromBackend: async (): Promise<CandidateProfile | null> => {
+    try {
+      const res = await fetch(`${API_BASE}/profile`, {
+        headers: { ...getAuthHeader() },
+        signal: AbortSignal.timeout(2500),
+      });
+      if (res.ok) {
+        const json = await res.json();
+        if (json.data) {
+          const d = json.data;
+          const mapped: CandidateProfile = {
+            id: String(d.id || 'cand-001'),
+            fullName: d.full_name || '',
+            email: d.email || '',
+            phone: d.phone || '',
+            headline: d.headline || '',
+            university: d.current_institution || 'Lovely Professional University (LPU)',
+            degree: d.degree || 'Bachelor of Computer Applications (AI & ML)',
+            graduationYear: String(d.graduation_year || 2026),
+            currentCity: d.current_location || 'Bengaluru',
+            bio: d.bio || '',
+            skills: Array.isArray(d.skills) ? d.skills : (typeof d.skills === 'string' ? JSON.parse(d.skills) : []),
+            portfolioUrl: d.portfolio_url || '',
+            githubUrl: d.github_url || '',
+            linkedinUrl: d.linkedin_url || '',
+            workModePreference: 'Hybrid',
+            preferredRoles: Array.isArray(d.preferred_roles) ? d.preferred_roles : ['Full Stack Developer', 'AI / ML Engineer'],
+            expectedStipendMin: d.min_stipend_expected || 30000,
+            resumeFileName: d.resume_filename || undefined,
+            profileCompletionPercentage: d.readiness_score || 80,
+          };
+          localStorage.setItem(STORAGE_PROFILE, JSON.stringify(mapped));
+          return mapped;
+        }
+      }
+    } catch {
+      // Fallback
+    }
+    return null;
+  },
+
+  uploadResumeToBackend: async (
+    filename: string,
+    file: File
+  ): Promise<{ success: boolean; filename?: string; error?: string }> => {
+    try {
+      const buffer = await file.arrayBuffer();
+      const bytes = new Uint8Array(buffer);
+      let binary = '';
+      for (let i = 0; i < bytes.byteLength; i++) {
+        binary += String.fromCharCode(bytes[i]);
+      }
+      const base64Data = btoa(binary);
+
+      const res = await fetch(`${API_BASE}/profile/resume`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...getAuthHeader(),
+        },
+        body: JSON.stringify({ filename, base64Data }),
+      });
+
+      const json = await res.json();
+      if (res.ok && json.success) {
+        return { success: true, filename: json.data?.filename || filename };
+      }
+      return { success: false, error: json.error || 'Failed to upload resume' };
+    } catch (err: any) {
+      return { success: false, error: err.message || 'Upload error' };
+    }
   },
 };
 

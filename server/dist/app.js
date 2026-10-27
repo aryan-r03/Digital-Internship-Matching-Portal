@@ -58,7 +58,7 @@ const getHealthStatus = () => {
     return {
         status: dbStatus === 'healthy' ? 'healthy' : 'degraded',
         service: 'KaamSetu-api',
-        platform: 'KaamSetu // कामसूत्र Career & Internship Platform',
+        platform: 'KaamSetu // कामसेतु Career & Internship Platform',
         version: '2.0.0',
         timestamp: new Date().toISOString(),
         database: dbStatus,

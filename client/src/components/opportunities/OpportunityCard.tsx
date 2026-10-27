@@ -47,16 +47,28 @@ export const OpportunityCard: React.FC<OpportunityCardProps> = ({
       {/* Background Screentone Pattern */}
       <div className="absolute inset-0 bg-screentone bg-screentone-sm opacity-0 group-hover:opacity-15 transition-opacity pointer-events-none" />
 
-      {/* Mandatory Demo Data Notice Banner */}
-      <div className="bg-neutral-900 border-b border-manga-border px-3 py-1 flex items-center justify-between text-[10px] font-mono text-manga-dim">
-        <span className="flex items-center gap-1 text-amber-400 font-semibold">
-          <AlertCircle className="w-3 h-3" />
-          Demo data — not live opportunities
-        </span>
-        <span className="text-[9px] uppercase tracking-wider text-manga-muted">
-          ID: {opportunity.id}
-        </span>
-      </div>
+      {/* Live Verified vs Demo Data Notice Banner */}
+      {!opportunity.isMockData ? (
+        <div className="bg-emerald-950/80 border-b border-emerald-500/40 px-3 py-1 flex items-center justify-between text-[10px] font-mono text-emerald-200">
+          <span className="flex items-center gap-1 text-emerald-300 font-bold uppercase tracking-wider">
+            <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+            Verified Live Listing • {opportunity.sourceName || 'RemoteOK'}
+          </span>
+          <span className="text-[9px] uppercase tracking-wider text-emerald-400 font-mono">
+            LIVE FEED
+          </span>
+        </div>
+      ) : (
+        <div className="bg-neutral-900 border-b border-manga-border px-3 py-1 flex items-center justify-between text-[10px] font-mono text-manga-dim">
+          <span className="flex items-center gap-1 text-amber-400 font-semibold">
+            <AlertCircle className="w-3 h-3" />
+            Demo data — not live opportunities
+          </span>
+          <span className="text-[9px] uppercase tracking-wider text-manga-muted">
+            ID: {opportunity.id}
+          </span>
+        </div>
+      )}
 
       <div className="p-5 flex-1 flex flex-col justify-between space-y-4 relative z-10">
         {/* Header: Company & Bookmark */}

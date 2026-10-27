@@ -12,7 +12,7 @@ export const Register: React.FC = () => {
   const [username, Setusername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState<'reader' | 'creator'>('reader');
+  const [role, setRole] = useState<'candidate' | 'employer' | 'reader' | 'creator'>('candidate');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -31,7 +31,7 @@ export const Register: React.FC = () => {
     setError(null);
     try {
       await register({ username, email, password, role });
-      navigate('/explore');
+      navigate('/profile');
     } catch (err: any) {
       setError(err.message || 'Failed to create account.');
     } finally {

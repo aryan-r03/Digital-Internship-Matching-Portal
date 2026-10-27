@@ -1,35 +1,49 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { User } from '../types/index.js';
-import { api } from '../api/index.js';
+import { api, AUTH_TOKEN_KEY, getStoredToken } from '../api/index.js';
 
 interface AuthContextType {
   user: User | null;
   token: string | null;
   loading: boolean;
   login: (credentials: { emailOrUsername: string; password: string }) => Promise<void>;
-  register: (data: { username: string; email: string; password: string; role?: 'reader' | 'creator' }) => Promise<void>;
+  register: (data: { username: string; email: string; password: string; role?: 'candidate' | 'employer' | 'reader' | 'creator' | 'admin' }) => Promise<void>;
   logout: () => void;
   updateUser: (updatedUser: Partial<User>) => void;
-  quickLogin: (role: 'reader' | 'creator' | 'admin') => Promise<void>;
+  quickLogin: (role: 'candidate' | 'employer' | 'admin' | 'reader' | 'creator') => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+function persistToken(token: string) {
+  localStorage.setItem(AUTH_TOKEN_KEY, token);
+  localStorage.setItem('KaamSetu_auth_token', token);
+  localStorage.setItem('manga_token', token);
+}
+
+function clearPersistedToken() {
+  localStorage.removeItem(AUTH_TOKEN_KEY);
+  localStorage.removeItem('KaamSetu_auth_token');
+  localStorage.removeItem('manga_token');
+}
+
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, Setuser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(() => localStorage.getItem('manga_token'));
+  const [user, setUser] = useState<User | null>(null);
+  const [token, setToken] = useState<string | null>(() => getStoredToken());
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadUser() {
-      if (!token) {
+      const currentToken = getStoredToken();
+      if (!currentToken) {
         setLoading(false);
         return;
       }
       try {
         const res = await api.getMe();
         if (res.success && res.data) {
-          Setuser(res.data);
+          setUser(res.data);
+          setToken(currentToken);
         } else {
           logout();
         }
@@ -41,41 +55,41 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
     }
     loadUser();
-  }, [token]);
+  }, []);
 
   const login = async (credentials: { emailOrUsername: string; password: string }) => {
     const res = await api.login(credentials);
     if (res.success && res.data) {
-      localStorage.setItem('manga_token', res.data.token);
+      persistToken(res.data.token);
       setToken(res.data.token);
-      Setuser(res.data.user);
+      setUser(res.data.user);
     }
   };
 
-  const register = async (data: { username: string; email: string; password: string; role?: 'reader' | 'creator' }) => {
+  const register = async (data: { username: string; email: string; password: string; role?: 'candidate' | 'employer' | 'reader' | 'creator' | 'admin' }) => {
     const res = await api.register(data);
     if (res.success && res.data) {
-      localStorage.setItem('manga_token', res.data.token);
+      persistToken(res.data.token);
       setToken(res.data.token);
-      Setuser(res.data.user);
+      setUser(res.data.user);
     }
   };
 
   const logout = () => {
-    localStorage.removeItem('manga_token');
+    clearPersistedToken();
     setToken(null);
-    Setuser(null);
+    setUser(null);
   };
 
   const updateUser = (updated: Partial<User>) => {
     if (user) {
-      Setuser({ ...user, ...updated });
+      setUser({ ...user, ...updated });
     }
   };
 
-  const quickLogin = async (role: 'reader' | 'creator' | 'admin') => {
+  const quickLogin = async (role: 'candidate' | 'employer' | 'admin' | 'reader' | 'creator') => {
     let email = 'yuki@nextgenmanga.io';
-    if (role === 'creator') email = 'kenshi@nextgenmanga.io';
+    if (role === 'employer' || role === 'creator') email = 'kenshi@nextgenmanga.io';
     if (role === 'admin') email = 'admin@nextgenmanga.io';
 
     await login({ emailOrUsername: email, password: 'password123' });

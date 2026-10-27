@@ -4,8 +4,9 @@ export interface User {
   email: string;
   avatar_url?: string | null;
   bio?: string | null;
-  role: 'reader' | 'creator' | 'admin';
+  role: 'candidate' | 'employer' | 'reader' | 'creator' | 'admin';
   created_at: string;
+  candidateProfile?: any;
   stats?: {
     bookmarksCount: number;
     chaptersReadCount: number;

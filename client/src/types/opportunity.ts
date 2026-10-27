@@ -47,7 +47,11 @@ export interface Opportunity {
   openings: number;
   isFeatured?: boolean;
   isUrgent?: boolean;
-  isMockData: true; // Explicit label: Demo data — not live opportunities
+  isMockData: boolean; // false for verified external provider listings, true for demo seed data
+  sourceName?: 'RemoteOK' | 'Adzuna' | 'Internal';
+  sourceUrl?: string;
+  applyUrl?: string;
+  lastVerifiedAt?: string;
 }
 
 export interface CandidateProfile {
@@ -95,5 +99,6 @@ export interface OpportunityFilterOptions {
   location?: string;
   minStipend?: number;
   hasPPOOnly?: boolean;
+  source?: 'all' | 'live' | 'demo';
   sortBy?: 'recommended' | 'stipend_high' | 'deadline_soon' | 'newest';
 }

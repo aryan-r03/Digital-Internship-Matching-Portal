@@ -31,7 +31,7 @@ export const Footer: React.FC = () => {
                   KaamSetu<span className="text-manga-accent">.</span>IO
                 </span>
                 <span className="text-sm font-hindi text-manga-accent font-bold">
-                  // कामसूत्र
+                  // कामसेतु
                 </span>
               </div>
             </div>
@@ -112,7 +112,7 @@ export const Footer: React.FC = () => {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-manga-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-manga-dim">
           <div>
-            © {new Date().getFullYear()} KaamSetu // कामसूत्र. Next-Gen Career & Internship Interface.
+            © {new Date().getFullYear()} KaamSetu // कामसेतु. Next-Gen Career & Internship Interface.
           </div>
           <div className="flex items-center gap-3">
             <span className="font-hindi text-manga-muted">सफ़र • लक्ष्य • तैयारी • सफलता</span>

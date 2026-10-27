@@ -102,20 +102,51 @@ export const OpportunityDetail: React.FC = () => {
         </Link>
       </div>
 
-      {/* Prominent Mandatory Demo Data Notice */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-3 bg-neutral-900 border border-amber-500/40 text-xs font-mono text-amber-200 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0" />
-            <span>
-              <strong>DEMO SPECIFICATION:</strong> This listing is a sample/mock demonstration opportunity for frontend evaluation. It is not an active employer opening.
+      {/* Live Verified vs Demo Data Notice Banner */}
+      {!opportunity.isMockData ? (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="p-3 bg-emerald-950/80 border border-emerald-500/50 text-xs font-mono text-emerald-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+              <span>
+                <strong>VERIFIED LIVE LISTING:</strong> This role is aggregated from{' '}
+                <a
+                  href={opportunity.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline text-emerald-300 hover:text-white"
+                >
+                  {opportunity.sourceName || 'RemoteOK.com'}
+                </a>
+                . Applications redirect directly to the verified employer site.
+              </span>
+            </div>
+            <a
+              href={opportunity.applyUrl || opportunity.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider shrink-0 transition-colors"
+            >
+              <span>Employer Site</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </div>
+        </div>
+      ) : (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="p-3 bg-neutral-900 border border-amber-500/40 text-xs font-mono text-amber-200 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0" />
+              <span>
+                <strong>DEMO SPECIFICATION:</strong> This listing is a sample/mock demonstration opportunity for evaluation. It is not an active employer opening.
+              </span>
+            </div>
+            <span className="text-[10px] text-manga-dim uppercase shrink-0">
+              RECORD: {opportunity.id}
             </span>
           </div>
-          <span className="text-[10px] text-manga-dim uppercase shrink-0">
-            RECORD: {opportunity.id}
-          </span>
         </div>
-      </div>
+      )}
 
       {/* Hero Header Box */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -186,15 +217,27 @@ export const OpportunityDetail: React.FC = () => {
                 <span className="hidden sm:inline">{isSaved ? 'Saved' : 'Save'}</span>
               </button>
 
-              <Button
-                variant="primary"
-                size="md"
-                onClick={() => setShowApplyModal(true)}
-                disabled={hasApplied}
-                leftIcon={<Send className="w-4 h-4" />}
-              >
-                {hasApplied ? 'Applied ✓' : 'Apply via Portal'}
-              </Button>
+              {!opportunity.isMockData ? (
+                <a
+                  href={opportunity.applyUrl || opportunity.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs font-bold uppercase tracking-wider transition-colors shadow-panel"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  <span>Apply on Employer Site</span>
+                </a>
+              ) : (
+                <Button
+                  variant="primary"
+                  size="md"
+                  onClick={() => setShowApplyModal(true)}
+                  disabled={hasApplied}
+                  leftIcon={<Send className="w-4 h-4" />}
+                >
+                  {hasApplied ? 'Applied ✓' : 'Apply via Portal'}
+                </Button>
+              )}
             </div>
           </div>
 

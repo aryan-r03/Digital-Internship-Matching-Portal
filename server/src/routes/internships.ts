@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { InternshipService } from '../services/internshipService.js';
 import { MatchingService } from '../services/matchingService.js';
 import { ProfileService } from '../services/profileService.js';
+import { providerRegistry } from '../services/providers/providerRegistry.js';
 import { optionalAuth, AuthenticatedRequest } from '../middleware/auth.js';
 import { validateQuery } from '../middleware/validate.js';
 
@@ -15,23 +16,74 @@ const filterQuerySchema = z.object({
   roleType: z.string().optional(),
   minStipend: z.coerce.number().optional(),
   ppoOnly: z.enum(['true', 'false', '1', '0']).optional().transform((val) => val === 'true' || val === '1'),
+  source: z.enum(['all', 'live', 'demo']).optional(),
   page: z.coerce.number().int().min(1).default(1),
-  limit: z.coerce.number().int().min(1).max(50).default(20),
+  limit: z.coerce.number().int().min(1).max(100).default(30),
   sort: z.enum(['newest', 'stipend', 'deadline']).default('newest'),
 });
 
-// GET /api/v1/internships - Discover and filter internships
+// GET /api/v1/internships/sources/status - Real-time external provider health, counts, and attribution
+router.get('/sources/status', async (req: Request, res: Response) => {
+  res.json({
+    success: true,
+    data: providerRegistry.getProviderStatuses(),
+  });
+});
+
+// GET /api/v1/internships - Discover and filter internships (merged verified feeds & demo records)
 router.get('/', validateQuery(filterQuerySchema), async (req: Request, res: Response, next) => {
   try {
-    const result = InternshipService.list(req.query as any);
+    const query = req.query as any;
+    const source = query.source || (process.env.NODE_ENV === 'test' ? 'demo' : 'all');
+
+    let liveItems: any[] = [];
+    if (source === 'all' || source === 'live') {
+      try {
+        liveItems = await providerRegistry.getAggregatedListings({
+          search: query.search,
+          category: query.category,
+          workMode: query.workMode,
+          minStipend: query.minStipend,
+        });
+      } catch (err: any) {
+        console.warn('[Internships API] Provider aggregation warning:', err?.message);
+        liveItems = [];
+      }
+    }
+
+    let demoResult = { data: [] as any[], total: 0 };
+    if (source === 'all' || source === 'demo') {
+      demoResult = InternshipService.list(query);
+    }
+
+    let combined: any[] = [];
+    if (source === 'live') {
+      combined = liveItems;
+    } else if (source === 'demo') {
+      combined = demoResult.data;
+    } else {
+      // 'all': place live verified opportunities first, followed by demo records
+      combined = [...liveItems, ...demoResult.data];
+    }
+
+    const page = Number(query.page) || 1;
+    const limit = Number(query.limit) || 30;
+    const total = combined.length;
+    const startIndex = (page - 1) * limit;
+    const paginated = combined.slice(startIndex, startIndex + limit);
+
     res.json({
       success: true,
-      data: result.data,
+      data: paginated,
       pagination: {
-        total: result.total,
-        page: result.page,
-        limit: result.limit,
-        totalPages: result.totalPages,
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit) || 1,
+      },
+      sources: {
+        liveCount: liveItems.length,
+        demoCount: demoResult.data.length,
       },
     });
   } catch (err) {
@@ -43,15 +95,31 @@ router.get('/', validateQuery(filterQuerySchema), async (req: Request, res: Resp
 router.get('/:id', async (req: Request, res: Response, next) => {
   try {
     const rawId = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
-    const id = parseInt(rawId, 10);
-    if (isNaN(id)) {
-      // Try resolving by slug
-      const bySlug = InternshipService.getBySlug(rawId);
-      if (!bySlug) {
-        res.status(404).json({ success: false, error: 'Internship not found.' });
+
+    // 1. Check external providers if ID is external (e.g. remoteok-..., adzuna-...)
+    if (rawId.startsWith('remoteok-') || rawId.startsWith('adzuna-')) {
+      const extItem = await providerRegistry.getListingById(rawId);
+      if (extItem) {
+        res.json({ success: true, data: extItem });
         return;
       }
-      res.json({ success: true, data: bySlug });
+    }
+
+    // 2. Resolve in local database by integer ID or slug
+    const id = parseInt(rawId, 10);
+    if (isNaN(id)) {
+      const bySlug = InternshipService.getBySlug(rawId);
+      if (bySlug) {
+        res.json({ success: true, data: bySlug });
+        return;
+      }
+      // Check external registry by slug as well
+      const extBySlug = await providerRegistry.getListingById(rawId);
+      if (extBySlug) {
+        res.json({ success: true, data: extBySlug });
+        return;
+      }
+      res.status(404).json({ success: false, error: 'Internship not found.' });
       return;
     }
 
@@ -71,8 +139,14 @@ router.get('/:id', async (req: Request, res: Response, next) => {
 router.get('/:id/match', optionalAuth, async (req: AuthenticatedRequest, res: Response, next) => {
   try {
     const rawId = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
-    const id = parseInt(rawId, 10);
-    const internship = isNaN(id) ? InternshipService.getBySlug(rawId) : InternshipService.getById(id);
+
+    let internship: any = null;
+    if (rawId.startsWith('remoteok-') || rawId.startsWith('adzuna-')) {
+      internship = await providerRegistry.getListingById(rawId);
+    } else {
+      const id = parseInt(rawId, 10);
+      internship = isNaN(id) ? InternshipService.getBySlug(rawId) : InternshipService.getById(id);
+    }
 
     if (!internship) {
       res.status(404).json({ success: false, error: 'Internship not found.' });

@@ -1,7 +1,17 @@
 const API_BASE = '/api/v1';
 
+export const AUTH_TOKEN_KEY = 'kaamsetu_auth_token';
+
+export function getStoredToken(): string | null {
+  return (
+    localStorage.getItem('kaamsetu_auth_token') ||
+    localStorage.getItem('KaamSetu_auth_token') ||
+    localStorage.getItem('manga_token')
+  );
+}
+
 function getAuthHeader(): Record<string, string> {
-  const token = localStorage.getItem('manga_token');
+  const token = getStoredToken();
   return token ? { Authorization: `Bearer ${token}` } : {};
 }
 

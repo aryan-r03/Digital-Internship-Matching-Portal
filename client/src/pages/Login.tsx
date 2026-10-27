@@ -20,7 +20,7 @@ export const Login: React.FC = () => {
     setError(null);
     try {
       await login({ emailOrUsername, password });
-      navigate('/library');
+      navigate('/dashboard');
     } catch (err: any) {
       setError(err.message || 'Invalid username or password.');
     } finally {
@@ -28,12 +28,12 @@ export const Login: React.FC = () => {
     }
   };
 
-  const handleQuickDemo = async (role: 'reader' | 'creator' | 'admin') => {
+  const handleQuickDemo = async (role: 'candidate' | 'employer' | 'admin' | 'reader' | 'creator') => {
     setLoading(true);
     setError(null);
     try {
       await quickLogin(role);
-      navigate('/library');
+      navigate('/dashboard');
     } catch (err: any) {
       setError(err.message || 'Quick login failed');
     } finally {
@@ -56,7 +56,7 @@ export const Login: React.FC = () => {
 
           <div className="relative z-10">
             <Badge variant="kanji" size="sm">
-              कामसूत्र // CODENAME
+              कामसेतु // CODENAME
             </Badge>
           </div>
 

@@ -7,13 +7,13 @@ import { Internship, CandidateProfile } from '../src/types/index.js';
 
 describe('KaamSetu Phase 2 — Production Backend Test Suite', () => {
   const timestamp = Date.now();
-  const testCandidateEmail = `candidate_${timestamp}@KaamSetu.test`;
+  const testCandidateEmail = `candidate_${timestamp}@kaamsetu.test`;
   const testCandidateUsername = `testcandidate_${timestamp}`;
   const testPassword = 'StrongPassword123!';
   let candidateToken = '';
   let candidateUserId = 0;
 
-  const testCandidate2Email = `candidate2_${timestamp}@KaamSetu.test`;
+  const testCandidate2Email = `candidate2_${timestamp}@kaamsetu.test`;
   const testCandidate2Username = `candidate2_${timestamp}`;
   let candidate2Token = '';
   let candidate2UserId = 0;
